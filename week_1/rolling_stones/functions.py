@@ -81,69 +81,63 @@ def most_pop_word():
 
 
 # Histogram of albums by decade - Returns a histogram with each decade pointing to the number of albums released during that decade.
-year_list = []
-years_int = []
-for item in rolling_final:
-    year_list.append(item['year'])
-for year in year_list:
-    years_int.append(int(year))
-years_hist = []
-for year in years_int:
-    if year in range(1950,1960):
-        years_hist.append(1960)
-    if year in range(1960,1970):
-        years_hist.append(1970)
-    if year in range(1970,1980):
-        years_hist.append(1980)
-    if year in range(1980,1990):
-        years_hist.append(1990)
-    if year in range(1990,2000): 
-        years_hist.append(2000)
-    if year in range(2000,2010): 
-        years_hist.append(2010)
-    if year in range(2010,2020): 
-        years_hist.append(2020)
-    
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-plt.hist(years_hist, bins=7, edgecolor='black')
-plt.ylabel('No of times')
-plt.xlabel('Decade')
-plt.show()
+def hist_dec():
+    year_list = []
+    years_int = []
+    for item in rolling_final:
+        year_list.append(item['year'])
+    for year in year_list:
+        years_int.append(int(year))
+    years_hist = []
+    for year in years_int:
+        if year in range(1950,1960):
+            years_hist.append(1960)
+        if year in range(1960,1970):
+            years_hist.append(1970)
+        if year in range(1970,1980):
+            years_hist.append(1980)
+        if year in range(1980,1990):
+            years_hist.append(1990)
+        if year in range(1990,2000): 
+            years_hist.append(2000)
+        if year in range(2000,2010): 
+            years_hist.append(2010)
+        if year in range(2010,2020): 
+            years_hist.append(2020)
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+    plt.hist(years_hist, bins=7, edgecolor='black')
+    plt.ylabel('No of times')
+    plt.xlabel('Decade')
+    plt.show()
 
 
 # Histogram by genre - Returns a histogram with each genre pointing to the number of albums that are categorized as being in that genre.
-year_list = []
-years_int = []
-for item in rolling_final:
-    year_list.append(item['year'])
-for year in year_list:
-    years_int.append(int(year))
-genre_hist = []
-for year in years_int:
-    if year in range(1950,1960):
-        genre_hist.append(1950)
-    if year in range(1960,1970):
-        genre_hist.append(1960)
-    if year in range(1970,1980):
-        genre_hist.append(1970)
-    if year in range(1980,1990):
-        genre_hist.append(1980)
-    if year in range(1990,2000): 
-        genre_hist.append(1990)
-    if year in range(2000,2010): 
-        genre_hist.append(2000)
-    
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-plt.hist(genre_hist, bins=5, edgecolor='black')
-plt.ylabel('No of times')
-plt.xlabel('Decade')
-plt.show()
 
-
+def hist_genre():
+    genres = []
+    for item in rolling_final:
+        genres.append(item['genre'])
+    genres_list = []
+    for item in genres:
+        genres_list.extend(item.split(', '))
+    genres_list2 = []
+    for item in genres_list:
+        genres_list2.extend(item.split(','))
+    genre_cat = {}
+    for item in genres_list2:
+        genre_cat[item] = genres_list2.count(item)
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+    plt.figure(figsize=(25,10))
+    plt.bar(range(len(genre_cat)), list(genre_cat.values()), edgecolor='black')
+    plt.xlabel('Genres', fontsize=30)
+    plt.ylabel('Count', fontsize=30)
+    plt.xticks(list(range(0,15)), genre_cat, fontsize=20, rotation=90)
+    plt.title('Genre Count', fontsize=30)
 
 
 
