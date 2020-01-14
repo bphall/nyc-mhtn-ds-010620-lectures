@@ -1,0 +1,44 @@
+class ShoppingCart:
+
+    def __init__(self, employee_discount=None, total=0, items=[]):
+        self.total = total
+        self.employee_discount = employee_discount
+        self.items = items
+        self.price_list = []
+
+    def add_item(self, item, price, quantity=1):
+        for i in range(quantity):
+            self.items.append(item)
+            self.total += price
+            self.price_list.append(price)
+            self.price_list = sorted(self.price_list)
+        return self.total
+
+    def mean_item_price(self):
+        return self.total / len(self.items)
+
+    def median_item_price(self):
+        mid_low_pointer = len(self.price_list) // 2
+        if len(self.price_list) % 2 != 0:
+            return self.price_list[mid_low_pointer]
+        else:
+            return (self.price_list[mid_low_pointer] + self.price_list[mid_low_pointer + 1]) / 2
+
+    def apply_discount(self):
+        if self.employee_discount == None:
+            return 'Sorry, there is no discount to apply to your cart :('
+        else:
+            return self.total - self.total * self.employee_discount / 100
+
+    def void_last_item(self):
+        self.items.pop()
+        self.price_list.pop()
+        self.total = sum(self.price_list)
+
+shopping_cart = ShoppingCart()
+shopping_cart.add_item("rainbow sandals", 45.99)  # 45.99
+shopping_cart.add_item("agyle socks", 10.50)  # 56.49
+shopping_cart.add_item("jeans", 50.00, 3)  # 206.49
+shopping_cart.total
+shopping_cart.void_last_item()
+shopping_cart.total  # 156.49   

@@ -1,0 +1,83 @@
+#FINAL SOLUTION
+
+
+
+class School:
+    def __init__(self, name, roster = {}):
+        self.name = name
+        self.roster = roster
+    def add_student(self, fullname, grade):
+        if grade not in list(school.roster.keys()):
+            self.roster[grade] = [fullname]
+        else:
+            self.roster[grade].append(fullname)
+        self.roster = dict(sorted(school.roster.items()))
+    def grade(self, grade):
+        return school.roster[grade]
+    def sort_roster(self):
+        new_dict = {
+            k: sorted(v)
+            for k, v in school.roster.items()
+        }
+        return new_dict
+
+
+
+
+
+
+
+
+
+class School:
+    def __init__(self, name, roster = {}):
+        self.name = name
+        self.roster = roster
+    def add_student(self, fullname, grade):          # roster is {}
+        if grade not in list(school.roster.keys()):
+            self.roster[grade] = [fullname]
+        else:
+            self.roster[grade].append(fullname)
+        self.roster = dict(sorted(school.roster.items()))
+    def grade(self, grade):
+        return school.roster[grade]
+
+# SOLUTION WITH GRADE METHOD BUT NOT SORT YET ^^^^^
+
+class School:
+    def __init__(self, name, roster = {}):
+        self.name = name
+        self.roster = roster
+
+class School:
+    def __init__(self, name, roster = {}):
+        self.name = name
+        self.roster = roster
+    def add_student(self, fullname, grade):
+        if len(self.roster) == 0:
+            self.roster[grade] = [fullname]
+
+SOLUTION:
+
+# Again, you must reinstantiate since you've modified the class!
+class School:
+    def __init__(self, name, roster = {}):
+        self.name = name
+        self.roster = roster
+    def add_student(self, fullname, grade):          # roster is {}
+        if len(self.roster) == 0:                    # self.roster is {12: ['Peter Piper']}
+            self.roster[grade] = [fullname]
+        elif grade not in list(school.roster.keys()):
+            self.roster[grade] = [fullname]
+        else:
+            self.roster[grade].append(fullname)
+        self.roster = dict(sorted(school.roster.items()))
+
+
+school = School("Middletown High School")
+school.add_student("Peter Piper", 12)
+school.add_student("Kelly Slater", 9)
+school.add_student("Tony Hawk", 10)
+school.add_student("Ryan Sheckler", 10)
+school.add_student("Bethany Hamilton", 11)
+school.roster # {9: ["Kelly Slater"], 10: ["Tony Hawk", "Ryan Sheckler"], 11: ["Bethany Hamilton"], 12: ["Peter Piper"]}
