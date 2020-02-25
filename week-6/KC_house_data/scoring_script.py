@@ -17,7 +17,7 @@ import re
 
 
 #read in the answers
-answers = pd.read_csv('test_actuals.csv', index_col = 0, header=None, names=['price'] )
+answers = pd.read_csv('kc_house_data_test_target.csv', index_col = 0, header=None, names=['price'] )
 
 
 # In[ ]:
@@ -31,7 +31,7 @@ answers = pd.read_csv('test_actuals.csv', index_col = 0, header=None, names=['pr
 
 
 
-path = '/Users/swilson5/Documents/DSC/ds-010620/nyc-ds-010620-lectures/week-6/KC_house_data/answers'
+path = '/Users/braytonhall/FLATIRON_COURSE_MATERIALS/course_notes/week-6/KC_house_data/answers'
 extension = 'csv'
 os.chdir(path)
 files = glob.glob('*.{}'.format(extension))
